@@ -22,10 +22,10 @@ for (let i = 1; i <= 5; i++) {
    addBookToLibrary(new Book(`Book ${i}`, `Author ${i}`, i * 100, false), myLibrary);
 }
 
-const bookList = document.querySelector(".books");
+const libraryElement = document.querySelector(".library");
 
 myLibrary.forEach(book => {
    let bookElement = document.createElement("li");
    bookElement.innerText = book.info();
-   bookList.appendChild(bookElement);
+   libraryElement.appendChild(bookElement);
 });
