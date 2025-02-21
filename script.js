@@ -18,14 +18,21 @@ const addBookToLibrary = (book, library) => {
    library.push(book);
 }
 
-for (let i = 1; i <= 5; i++) {
-   addBookToLibrary(new Book(`Book ${i}`, `Author ${i}`, i * 100, false), myLibrary);
+const renderLibrary = (library, libraryElement) => {
+   while (libraryElement.firstChild) {
+      libraryElement.removeChild(libraryElement.lastChild);
+   }
+   
+   library.forEach(book => {
+      let bookElement = document.createElement("li");
+      bookElement.innerText = book.info();
+      libraryElement.appendChild(bookElement);
+   });
 }
 
 const libraryElement = document.querySelector(".library");
 
-myLibrary.forEach(book => {
-   let bookElement = document.createElement("li");
-   bookElement.innerText = book.info();
-   libraryElement.appendChild(bookElement);
-});
+for (let i = 1; i <= 5; i++) {
+   addBookToLibrary(new Book(`Book ${i}`, `Author ${i}`, i * 100, false), myLibrary);
+   renderLibrary(myLibrary, libraryElement);
+}
