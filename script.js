@@ -1,4 +1,6 @@
 
+const myLibrary = [];
+
 class Book {
    constructor(title, author, pages, read) {
       this.title = title;
@@ -10,6 +12,10 @@ class Book {
    info() {
       return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`;
    }
+}
+
+const addBookToLibrary = (book, library) => {
+   library.push(book);
 }
 
 const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
