@@ -18,4 +18,14 @@ const addBookToLibrary = (book, library) => {
    library.push(book);
 }
 
-const hobbit = new Book("The Hobbit", "J.R.R. Tolkien", 295, false);
+for (let i = 1; i <= 5; i++) {
+   addBookToLibrary(new Book(`Book ${i}`, `Author ${i}`, i * 100, false), myLibrary);
+}
+
+const bookList = document.querySelector(".books");
+
+myLibrary.forEach(book => {
+   let bookElement = document.createElement("li");
+   bookElement.innerText = book.info();
+   bookList.appendChild(bookElement);
+});
