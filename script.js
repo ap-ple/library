@@ -18,11 +18,8 @@ class Book {
 }
 
 class NewBook {
-   constructor(library, creatorButton) {
+   constructor(library) {
       this.library = library;
-      this.creatorButton = creatorButton;
-
-      this.creatorButton.disabled = true;
 
       this.element = document.createElement("li");
       this.element.classList.add("new-book");
@@ -30,20 +27,23 @@ class NewBook {
       let form = document.createElement("form");
       form.addEventListener("submit", event => {
          event.preventDefault();
-         this.library.popBook();
+         let bookIndex = Number(this.element["data-index"]);
+         this.library.removeBook(bookIndex);
          let values = [];
          Array.from(event.target.children).forEach(element => {
             if (element.name === "read") {
                values.push(element.value === "true");
+            }
+            else if (element.name === "pages") {
+               values.push(Number(element.value));
             }
             else if (element.tagName !== "button") {
                values.push(element.value);
             }
          });
 
-         this.library.addBook(new Book(...values));
+         this.library.insertBook(bookIndex, new Book(...values));
          this.library.render()
-         this.creatorButton.disabled = false;
       });
 
       let elementNames = ["title", "author", "pages", "read"];
@@ -72,6 +72,12 @@ class NewBook {
          }
          else {
             element = document.createElement("input");
+            if (elementName === "pages") {
+               element.type = "number";
+            }
+            else {
+               element.type = "text";
+            }
             element.placeholder = capitalize(elementName);
          }
 
@@ -86,6 +92,7 @@ class NewBook {
 
       let addButton = document.createElement("button");
       addButton.innerText = "Add";
+
       form.appendChild(addButton);
 
       this.element.appendChild(form);
@@ -102,12 +109,12 @@ class Library {
       this.books.push(book);
    }
 
-   removeBook(index) {
-
+   insertBook(index, book) {
+      this.books.splice(index, 0, book);
    }
 
-   popBook() {
-      this.books.pop();
+   removeBook(index) {
+      this.books.splice(index, 1);
    }
 
    render() {
@@ -115,9 +122,31 @@ class Library {
          this.libraryElement.removeChild(this.libraryElement.lastChild);
       }
       
-      this.books.forEach(book => {
+      for (let i = 0; i < this.books.length; i++) {
+         let book = this.books[i];
+         book.element["data-index"] = i;
+
+         let removeButton = book.element.querySelector("button.remove");
+         
+         if (removeButton !== null) {
+            book.element.removeChild(removeButton);
+         }
+         
+         removeButton = document.createElement("button");
+
+         removeButton.type = "button";
+         removeButton.classList.add("remove");
+         removeButton.innerText = "Remove";
+
+         removeButton.addEventListener("click", event => {
+            this.removeBook(i);
+            this.render();
+         });
+
+         book.element.appendChild(removeButton);
+
          this.libraryElement.appendChild(book.element);
-      });
+      };
    }
 }
 
@@ -133,7 +162,7 @@ const addBookButton = document.querySelector("button.add-book");
 
 addBookButton.addEventListener("click", event => {
    if (!("new-book" in myLibrary.libraryElement.lastChild.classList)) {
-      myLibrary.addBook(new NewBook(myLibrary, event.target));
+      myLibrary.addBook(new NewBook(myLibrary));
       myLibrary.render();
    }
 });
