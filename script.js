@@ -98,6 +98,7 @@ class NewBook {
             element = document.createElement("input");
             if (elementName === "pages") {
                element.type = "number";
+               element.min = 1;
             }
             else {
                element.type = "text";
