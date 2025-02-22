@@ -14,6 +14,7 @@ class Book {
       this.element.appendChild(this.infoElement);
 
       this.readButton = document.createElement("button");
+      this.readButton.classList.add("read");
       this.readButton.addEventListener("click", event => {
          this.toggleRead();
       });
@@ -159,7 +160,6 @@ class Library {
          
          removeButton = document.createElement("button");
 
-         removeButton.type = "button";
          removeButton.classList.add("remove");
          removeButton.innerText = "Remove";
 
