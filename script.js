@@ -9,11 +9,35 @@ class Book {
       this.read = read;
 
       this.element = document.createElement("li");
-      this.element.innerText = this.info();
+
+      this.infoElement = document.createElement("div");
+      this.element.appendChild(this.infoElement);
+
+      this.readButton = document.createElement("button");
+      this.readButton.addEventListener("click", event => {
+         this.toggleRead();
+      });
+      this.element.appendChild(this.readButton);
+
+      this.updateDisplay();
    }
    
+   readText(read) {
+      return read ? "read" : "not read yet";
+   }
+
    info() {
-      return `${this.title} by ${this.author}, ${this.pages} pages, ${this.read ? "read" : "not read yet"}`;
+      return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readText(this.read)}`;
+   }
+
+   updateDisplay() {
+      this.infoElement.innerText = this.info();
+      this.readButton.innerText = capitalize(this.readText(!this.read));
+   }
+
+   toggleRead() {
+      this.read = !this.read;
+      this.updateDisplay();
    }
 }
 
