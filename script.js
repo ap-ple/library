@@ -143,7 +143,7 @@ class Library {
             this.render();
          });
 
-         book.element.appendChild(removeButton);
+         book.element.prepend(removeButton);
 
          this.libraryElement.appendChild(book.element);
       };

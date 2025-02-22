@@ -1,0 +1,20 @@
+
+main>.library {
+   display: flex;
+   flex-flow: column;
+   gap: 0.5rem;
+}
+
+main>.library>li {
+   display: flex;
+   gap: 0.5rem;
+}
+
+main>.library>li>form {
+   display: flex;
+   gap: 0.5rem;
+}
+
+main>.library>li>form>[type=number] {
+   width: 4rem;
+}
