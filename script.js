@@ -42,7 +42,7 @@ class Book {
    }
 }
 
-class NewBook {
+class BookForm {
    constructor(library) {
       this.library = library;
 
@@ -180,6 +180,6 @@ const myLibrary = new Library(libraryElement);
 const addBookButton = document.querySelector("button.add-book");
 
 addBookButton.addEventListener("click", event => {
-   myLibrary.addBook(new NewBook(myLibrary));
+   myLibrary.addBook(new BookForm(myLibrary));
    myLibrary.render();
 });
