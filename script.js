@@ -161,8 +161,6 @@ for (let i = 1; i <= 5; i++) {
 const addBookButton = document.querySelector("button.add-book");
 
 addBookButton.addEventListener("click", event => {
-   if (!("new-book" in myLibrary.libraryElement.lastChild.classList)) {
-      myLibrary.addBook(new NewBook(myLibrary));
-      myLibrary.render();
-   }
+   myLibrary.addBook(new NewBook(myLibrary));
+   myLibrary.render();
 });
