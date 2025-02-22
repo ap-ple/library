@@ -177,12 +177,6 @@ class Library {
 
 const libraryElement = document.querySelector(".library");
 const myLibrary = new Library(libraryElement);
-
-for (let i = 1; i <= 5; i++) {
-   myLibrary.addBook(new Book(`Book ${i}`, `Author ${i}`, i * 100, false));
-   myLibrary.render();
-}
-
 const addBookButton = document.querySelector("button.add-book");
 
 addBookButton.addEventListener("click", event => {
