@@ -1,6 +1,8 @@
 
 const capitalize = phrase => phrase[0].toUpperCase() + phrase.slice(1);
 
+const readText = read => read ? "read" : "not read"
+
 class Book {
    constructor(title, author, pages, read) {
       this.title = title;
@@ -22,18 +24,14 @@ class Book {
 
       this.updateDisplay();
    }
-   
-   readText(read) {
-      return read ? "read" : "not read yet";
-   }
 
    info() {
-      return `${this.title} by ${this.author}, ${this.pages} pages, ${this.readText(this.read)}`;
+      return `${this.title} by ${this.author}, ${this.pages} pages, ${readText(this.read)}`;
    }
 
    updateDisplay() {
       this.infoElement.innerText = this.info();
-      this.readButton.innerText = capitalize(this.readText(!this.read));
+      this.readButton.innerText = capitalize(readText(!this.read));
    }
 
    toggleRead() {
@@ -87,11 +85,11 @@ class BookForm {
             placeholder.selected = true;
             element.appendChild(placeholder);
 
-            let optionNames = ["Read", "Not read yet"];
+            let optionNames = [capitalize(readText(true)), capitalize(readText(false))];
             optionNames.forEach(optionName => {
                let option = document.createElement("option");
                option.innerText = optionName;
-               option.value = optionName === "Read";
+               option.value = optionName === capitalize(readText(true));
                element.appendChild(option);
             });
          }
