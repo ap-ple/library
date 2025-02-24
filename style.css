@@ -20,6 +20,10 @@ main>.library>li>form {
    gap: 0.5rem;
 }
 
-main>.library>li>form>[type=number] {
+main>.library>li>form>input[name="title"] {
+   width: 16rem;
+}
+
+main>.library>li>form>input[type=number] {
    width: 4rem;
 }
