@@ -122,8 +122,8 @@ class BookForm {
 }
 
 class Library {
-   constructor(booksElement) {
-      this.booksElement = booksElement;
+   constructor(element) {
+      this.element = element;
       this.books = [];
    }
 
@@ -140,8 +140,8 @@ class Library {
    }
 
    render() {
-      while (this.booksElement.firstChild) {
-         this.booksElement.removeChild(this.booksElement.lastChild);
+      while (this.element.firstChild) {
+         this.element.removeChild(this.element.lastChild);
       }
       
       for (let i = 0; i < this.books.length; i++) {
@@ -166,15 +166,15 @@ class Library {
 
          book.element.prepend(removeButton);
 
-         this.booksElement.appendChild(book.element);
+         this.element.appendChild(book.element);
       };
    }
 }
 
 const booksElement = document.querySelector("body>main>.library>ul");
 const myLibrary = new Library(booksElement);
-const addBookButton = document.querySelector("body>main>.library>button.add-book");
 
+const addBookButton = document.querySelector("body>main>.library>button.add-book");
 addBookButton.addEventListener("click", event => {
    myLibrary.addBook(new BookForm(myLibrary));
    myLibrary.render();
