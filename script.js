@@ -17,9 +17,7 @@ class Book {
 
       this.readButton = document.createElement("button");
       this.readButton.classList.add("read");
-      this.readButton.addEventListener("click", event => {
-         this.toggleRead();
-      });
+      this.readButton.addEventListener("click", event => this.toggleRead());
       this.element.appendChild(this.readButton);
 
       this.updateDisplay();
