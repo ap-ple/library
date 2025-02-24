@@ -17,7 +17,12 @@ main>.library>li {
 
 main>.library>li>form {
    display: flex;
+   flex-flow: wrap;
    gap: 0.5rem;
+}
+
+main>.library>li>form>* {
+   flex: auto;
 }
 
 main>.library>li>form>input[name="title"] {
