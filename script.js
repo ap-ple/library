@@ -171,9 +171,9 @@ class Library {
    }
 }
 
-const booksElement = document.querySelector("main>.library>ul");
+const booksElement = document.querySelector("body>main>.library>ul");
 const myLibrary = new Library(booksElement);
-const addBookButton = document.querySelector("main>.library>button.add-book");
+const addBookButton = document.querySelector("body>main>.library>button.add-book");
 
 addBookButton.addEventListener("click", event => {
    myLibrary.addBook(new BookForm(myLibrary));
