@@ -51,17 +51,23 @@ class BookForm {
          let bookIndex = Number(this.element["data-index"]);
          this.library.removeBook(bookIndex);
          let values = [];
-         Array.from(event.target.children).forEach(element => {
-            if (element.name === "read") {
-               values.push(element.value === "true");
+         
+         const formData = new FormData(event.target);
+
+         for (const pair of formData) {
+            const key = pair[0];
+            const value = pair[1];
+
+            if (key.match("read")) {
+               values.push(value.match("true"));
             }
-            else if (element.name === "pages") {
-               values.push(Number(element.value));
+            else if (key.match("pages")) {
+               values.push(Number(value));
             }
-            else if (element.tagName !== "button") {
-               values.push(element.value);
+            else {
+               values.push(value);
             }
-         });
+         }
 
          this.library.insertBook(bookIndex, new Book(...values));
          this.library.render()
