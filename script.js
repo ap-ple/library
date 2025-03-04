@@ -76,7 +76,7 @@ class BookForm {
       let elementNames = ["title", "author", "pages", "read"];
       let elements = [];
 
-      elementNames.forEach(elementName => {
+      for (const elementName of elementNames) {
          let element;
 
          if (elementName === "read") {
@@ -90,12 +90,12 @@ class BookForm {
             element.appendChild(placeholder);
 
             let optionNames = [capitalize(readText(true)), capitalize(readText(false))];
-            optionNames.forEach(optionName => {
+            for (const optionName of optionNames) {
                let option = document.createElement("option");
                option.innerText = optionName;
                option.value = optionName === capitalize(readText(true));
                element.appendChild(option);
-            });
+            };
          }
          else {
             element = document.createElement("input");
@@ -111,12 +111,12 @@ class BookForm {
 
          element.name = elementName;
          elements.push(element);
-      });
+      };
       
-      elements.forEach(element => {
+      for (const element of elements) {
          element.required = true;
          form.appendChild(element);
-      });
+      };
 
       let addButton = document.createElement("button");
       addButton.innerText = "Add";
