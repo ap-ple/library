@@ -17,7 +17,7 @@ class Book {
 
       this.readButton = document.createElement("button");
       this.readButton.classList.add("read");
-      this.readButton.addEventListener("click", event => this.toggleRead());
+      this.readButton.addEventListener("click", () => this.toggleRead());
       this.element.appendChild(this.readButton);
 
       this.updateDisplay();
@@ -165,7 +165,7 @@ class Library {
          removeButton.classList.add("remove");
          removeButton.innerText = "Remove";
 
-         removeButton.addEventListener("click", event => {
+         removeButton.addEventListener("click", () => {
             this.removeBook(i);
             this.render();
          });
@@ -181,7 +181,7 @@ const booksElement = document.querySelector("body>main>.library>ul");
 const myLibrary = new Library(booksElement);
 
 const addBookButton = document.querySelector("body>main>.library>button.add-book");
-addBookButton.addEventListener("click", event => {
+addBookButton.addEventListener("click", () => {
    myLibrary.addBook(new BookForm(myLibrary));
    myLibrary.render();
 });
