@@ -1,7 +1,7 @@
 
 const capitalize = phrase => phrase[0].toUpperCase() + phrase.slice(1);
 
-const readText = read => read ? "read" : "not read"
+const readText = read => read ? "read" : "not read";
 
 class Book {
    constructor(title, author, pages, read) {
